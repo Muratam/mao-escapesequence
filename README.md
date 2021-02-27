@@ -1,36 +1,32 @@
-# Markov Algorithm Interpreter
+# Markov Algorithm Offline
 
-for Markov Algorithm Online: <https://mao.snuke.org/>
+- 基本仕様: [Markov Algorithm Online](https://mao.snuke.org/)
+- 一般的な処理を可能にするために以下の仕様を追加
+  - ステップ数制限を廃止
+  - 文字列長制限を廃止
+  - コード長制限を廃止
+  - エスケープシーケンスを導入
+    - `\n` : 改行文字(0x0a) として扱われる
+    - `\:` : ':'(0x3a) として扱われる
+    - `\\` : '\'(0x5c) として扱われる
+    - `\n` でも `\:` でも　`\\` でもない単発 `\` の扱いは、エラーもしくは処理系依存の動作として扱う
 
-## How to install
-
-``` console
-$ pip3 install git+https://github.com/kmyk/markov-algorithm-interpreter
-```
-
-Also, you can just download `markov_algorithm.py` and use it directly.
-
-## Usage
-
-``` console
-$ echo INPUT | markov FILE
-```
-
-For example,
+## 使用例
 
 ``` console
-$ cat append-s.txt
-#!/usr/bin/env markov
-sb:bs
-s::
-:s
+$ cat append-t.mao
+tb:bt
+t::t
+:t
 
-$ echo bb | markov append-s.txt
-ops = [('sb', False, 'bs'), ('s', True, ''), ('', False, 's')]
-0: bb
-1: sbb
-2: bsb
-3: bbs
-3: bb
-bb
+$ echo bbbbb | python markov_algorithm.py append-t.mao
+bbbbbt
 ```
+
+# サンプル
+- samples/append-t.mao
+  - 上記例と同様
+- samples/cat.mao
+  - `cat` と同様の動作をする
+- samples/hello.mao
+  - `Hello: World!\n` を標準入力で受け取った文字列の先頭に追加する
