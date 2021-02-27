@@ -64,14 +64,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('file')
     args = parser.parse_args()
-    with open(args.file) as fh:
-        code = fh.read()
-    stdin = ""
-    while True:
-        try:
-            stdin += input() + "\n"
-        except:
-            break
+    with open(args.file) as f:
+        code = f.read()
+    with open('/dev/stdin') as f:
+        stdin = f.read()
     print(interpret(code, stdin), end="")
 
 
