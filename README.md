@@ -1,6 +1,6 @@
 # Markov Algorithm Offline
 
-- 基本仕様: [Markov Algorithm Online](https://mao.snuke.org/)
+- 基本仕様: Markov Algorithm Online https://mao.snuke.org/
 - 一般的な処理を可能にするために以下の仕様を追加
   - ステップ数制限を廃止
   - 文字列長制限を廃止
